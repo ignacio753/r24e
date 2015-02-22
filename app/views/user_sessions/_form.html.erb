@@ -1,25 +1,38 @@
 <%= form_for(@user_session) do |f| %>
-  <% if @user_session.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(@user_session.errors.count, "error") %> prohibited this user_session from being saved:</h2>
-
-      <ul>
-      <% @user_session.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+	<% if @user_session.errors.any? %>
+    <div id="error_expl" class="panel panel-danger">
+		<div class="panel-heading">
+        	<h3 class="panel-title"><%= pluralize(@user_session.errors.count, "error") %> prohibited from login into the application:</h3>
+		</div>
+      	<div class="panel-body">
+        <ul>
+      	<% @user_session.errors.full_messages.each do |message| %>
+        	<li><%= message %></li>
+      	<% end %>
+      	</ul>
+		</div>
+	</div>
+	<% end %>
+	
+    <div class="row control-group">
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+        	<%= f.label :username %><br>
+    		<%= f.text_field :username, class:'form-control', placeholder:'Username'  %>
+            <p class="help-block text-danger"></p>
+        </div>
     </div>
-  <% end %>
-
-  <div class="field">
-    <%= f.label :username %><br>
-    <%= f.text_field :username %>
-  </div>
-  <div class="field">
-    <%= f.label :password %><br>
-    <%= f.password_field :password %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+    <div class="row control-group">
+        <div class="form-group col-xs-12 floating-label-form-group controls">
+        	<%= f.label :password %><br>
+    		<%= f.text_field :password, class:'form-control', placeholder:'Password'  %>
+            <p class="help-block text-danger"></p>
+        </div>
+    </div>
+    <br>
+    <div id="success"></div>
+    <div class="row">
+        <div class="form-group col-xs-12">
+        	<%= f.submit 'Login', class:'btn btn-success btn-lg' %>
+        </div>
+    </div>
 <% end %>
