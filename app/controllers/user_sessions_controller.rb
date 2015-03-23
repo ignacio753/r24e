@@ -1,5 +1,6 @@
 class UserSessionsController < ApplicationController
   before_action :set_user_session, only: [:destroy]
+  before_filter :require_user, :only => :destroy
   
   # GET /user_sessions/new
   def new
